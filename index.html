@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ekojoe Covenant Lemom — Backend Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #f9f9f7;
+      --surface: #ffffff;
+      --border: #e4e4e0;
+      --text: #1a1a1a;
+      --muted: #6b6b6b;
+      --accent: #2d7a4f;
+      --accent-light: #eaf4ee;
+      --nav-h: 60px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(249, 249, 247, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+    }
+
+    nav .logo {
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav ul a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+
+    nav ul a:hover {
+      color: var(--accent);
+    }
+
+    /* LAYOUT */
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 clamp(1.5rem, 5vw, 2rem);
+    }
+
+    section {
+      padding: 5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 2.75rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+    }
+
+    h2 {
+      font-size: 1.375rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    p {
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* HERO */
+    #hero {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-title {
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-bio {
+      max-width: 560px;
+      margin-bottom: 2rem;
+    }
+
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.85rem;
+      font-weight: 500;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.4rem 0.85rem;
+      background: var(--surface);
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .contact-link:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ABOUT */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .skill-tag {
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.3rem 0.75rem;
+      border-radius: 4px;
+      background: var(--accent-light);
+      color: var(--accent);
+      border: 1px solid #c3dfd0;
+    }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      transition: border-color 0.15s;
+    }
+
+    .project-card:hover {
+      border-color: var(--accent);
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.6rem;
+      gap: 1rem;
+    }
+
+    .project-link {
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--accent);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .project-link:hover {
+      text-decoration: underline;
+    }
+
+    .project-desc {
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .stack-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .stack-tag {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      background: #f3f3f0;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      font-weight: 500;
+    }
+
+    .contribution-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text);
+      margin-bottom: 0.35rem;
+    }
+
+    .contribution-text {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* FEATURED */
+    .deep-dive-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 2rem;
+    }
+
+    .deep-dive-block h3 {
+      margin-top: 1.75rem;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .deep-dive-block h3:first-of-type {
+      margin-top: 0;
+    }
+
+    .deep-dive-block p {
+      font-size: 0.9rem;
+    }
+
+    .flow-steps {
+      list-style: none;
+      counter-reset: steps;
+      margin: 0.5rem 0 1rem;
+    }
+
+    .flow-steps li {
+      counter-increment: steps;
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .flow-steps li::before {
+      content: counter(steps);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 0.7rem;
+      font-weight: 700;
+      margin-top: 1px;
+    }
+
+    .endpoint-block {
+      background: #f5f5f2;
+      border-radius: 6px;
+      padding: 0.85rem 1rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      color: var(--text);
+      margin: 0.5rem 0 1rem;
+      border: 1px solid var(--border);
+    }
+
+    .challenge-box {
+      background: var(--accent-light);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+      padding: 1rem 1.25rem;
+      margin-top: 0.5rem;
+    }
+
+    .challenge-box p {
+      font-size: 0.875rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .challenge-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* REFLECTION */
+    .reflection-list {
+      list-style: none;
+      margin-top: 0.5rem;
+    }
+
+    .reflection-list li {
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+      color: var(--muted);
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+
+    .reflection-list li:last-child {
+      border-bottom: none;
+    }
+
+    .reflection-list li::before {
+      content: '→';
+      color: var(--accent);
+      font-weight: 600;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* CONTACT */
+    .contact-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .contact-card {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      color: var(--text);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 1rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .contact-card:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 500px) {
+      nav ul {
+        gap: 1rem;
+      }
+
+      .project-header {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" class="logo">ECL</a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#featured">Deep Dive</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="container">
+      <p class="section-label">Portfolio</p>
+      <h1 class="hero-title">Ekojoe Covenant Lemom</h1>
+      <p class="hero-subtitle">Backend Engineer</p>
+      <p class="hero-bio">
+        I build backend systems that are reliable, secure, and built to last under real pressure.
+        Over the past year I've worked across API design, authentication, performance optimization,
+        and fault-tolerant infrastructure — mostly in TypeScript with NestJS. I'm 19, curious about
+        systems programming with Rust, and have a long-term eye on marine technology.
+      </p>
+      <div class="contact-row">
+        <a href="mailto:covenantekojoe@gmail.com" class="contact-link">✉ Email</a>
+        <a href="https://github.com/ekojoecovenant" target="_blank" rel="noopener" class="contact-link">⌥ GitHub</a>
+        <a href="https://linkedin.com/in/ekojoecovenant" target="_blank" rel="noopener" class="contact-link">in
+          LinkedIn</a>
+        <a href="https://x.com/ekojoecovenant" target="_blank" rel="noopener" class="contact-link">𝕏 Twitter</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <p class="section-label">About</p>
+      <h2>Who I am</h2>
+      <p>
+        I'm a 19-year-old backend developer with about a year of hands-on experience building
+        production-grade APIs and systems. I gravitate toward problems that involve concurrency,
+        reliability, and performance — the kind that don't show up in tutorials but show up constantly
+        in production.
+      </p>
+      <p>
+        Outside of work I play football, grind LeetCode for DSA, and slowly make my way through Rust.
+        Long-term I want to work at the intersection of software and marine technology — an unusual
+        combination that I think will matter more as that industry modernises.
+      </p>
+      <div class="skills-grid">
+        <span class="skill-tag">TypeScript</span>
+        <span class="skill-tag">NestJS</span>
+        <span class="skill-tag">Express.js</span>
+        <span class="skill-tag">Fastify</span>
+        <span class="skill-tag">PostgreSQL</span>
+        <span class="skill-tag">REST API Design</span>
+        <span class="skill-tag">JWT & OAuth 2.0</span>
+        <span class="skill-tag">RBAC</span>
+        <span class="skill-tag">Caching</span>
+        <span class="skill-tag">Background Jobs</span>
+        <span class="skill-tag">Retry Systems</span>
+        <span class="skill-tag">CSV Ingestion</span>
+        <span class="skill-tag">Structured Logging</span>
+        <span class="skill-tag">Rust (learning)</span>
+        <span class="skill-tag">C / C++ (Arduino)</span>
+        <span class="skill-tag">HTML / CSS / JS</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <p class="section-label">HNG Internship Projects</p>
+      <h2>What I built</h2>
+      <p>Selected work from HNG14 — each one a real backend system under real evaluation pressure.</p>
+
+      <div class="projects-grid">
+
+        <!-- Stage 3 -->
+        <div class="project-card">
+          <div class="project-header">
+            <h3>Insighta Labs+ — Secure Access & Multi-Interface Integration</h3>
+            <a href="https://github.com/Ekojoecovenant/hng14-backend-stage-3" target="_blank" rel="noopener"
+              class="project-link">GitHub ↗</a>
+          </div>
+          <p class="project-desc">
+            A full authentication and access control layer built on top of a demographic intelligence platform.
+            Users authenticate via GitHub OAuth with PKCE, receive short-lived access and refresh tokens,
+            and interact through two separate interfaces — a CLI and a browser-based web portal — both
+            talking to the same backend.
+          </p>
+          <div class="stack-row">
+            <span class="stack-tag">NestJS</span>
+            <span class="stack-tag">TypeScript</span>
+            <span class="stack-tag">PostgreSQL</span>
+            <span class="stack-tag">GitHub OAuth + PKCE</span>
+            <span class="stack-tag">JWT</span>
+            <span class="stack-tag">RBAC</span>
+            <span class="stack-tag">HTTP-only Cookies</span>
+            <span class="stack-tag">CSRF Protection</span>
+            <span class="stack-tag">Rate Limiting</span>
+          </div>
+          <p class="contribution-label">What I built</p>
+          <p class="contribution-text">
+            Designed and implemented the full auth flow — GitHub OAuth with PKCE, access and refresh
+            token lifecycle with short expiry windows, and role-based access control enforcing admin
+            and analyst permissions across every endpoint. Built the globally installable CLI that stores
+            credentials at <code>~/.insighta/credentials.json</code>, the web portal with HTTP-only
+            cookie sessions and CSRF protection, and the request logging layer across all three repos.
+          </p>
+        </div>
+
+        <!-- Stage 8a -->
+        <div class="project-card">
+          <div class="project-header">
+            <h3>Retry Engine — Fault-Tolerant Background Request Processing</h3>
+            <a href="https://github.com/Ekojoecovenant/retry-engine" target="_blank" rel="noopener"
+              class="project-link">GitHub ↗</a>
+          </div>
+          <p class="project-desc">
+            A production-grade retry engine built as infrastructure R&D for a social platform hitting
+            scaling limits. Outgoing HTTP requests are queued, processed by a background worker with
+            exponential backoff and jitter, and moved to a dead-letter store after max retries. The
+            caller never waits — every request returns immediately as pending.
+          </p>
+          <div class="stack-row">
+            <span class="stack-tag">NestJS</span>
+            <span class="stack-tag">TypeScript</span>
+            <span class="stack-tag">SQLite</span>
+            <span class="stack-tag">Exponential Backoff</span>
+            <span class="stack-tag">Jitter</span>
+            <span class="stack-tag">Background Workers</span>
+            <span class="stack-tag">Dead-Letter Queue</span>
+          </div>
+          <p class="contribution-label">What I built</p>
+          <p class="contribution-text">
+            Built the full retry engine from scratch — the queuing layer, the background worker that
+            polls every 500ms, exponential backoff with per-attempt randomised jitter, correct
+            discrimination between retryable (5xx/timeout/network) and terminal (4xx) failures,
+            and dead-letter handling for requests that exhaust all retries.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED DEEP DIVE -->
+  <section id="featured">
+    <div class="container">
+      <p class="section-label">Featured Deep Dive</p>
+      <h2>Retry Engine</h2>
+      <p>A closer look at the most infrastructure-level thing I built during HNG.</p>
+
+      <div class="deep-dive-block">
+
+        <h3>The Problem</h3>
+        <p>
+          Outgoing HTTP requests in most backend systems are synchronous — the caller blocks until the
+          request completes or fails. When the external service is slow, unavailable, or rate-limiting
+          you, that becomes a problem that propagates upward. You need a layer that decouples the caller
+          from the actual network call, handles transient failures automatically, and gives up cleanly
+          when something is truly broken.
+        </p>
+
+        <h3>Architecture & Request Flow</h3>
+        <ol class="flow-steps">
+          <li>Client hits <code>POST /request</code> — the request is persisted to the database with status
+            <code>pending</code> and the endpoint returns immediately.
+          </li>
+          <li>A background worker polls the queue every ~500ms and picks up pending requests.</li>
+          <li>The worker makes the actual outgoing HTTP call on behalf of the client.</li>
+          <li>On success, the request is marked <code>completed</code>. On a retryable failure (5xx, timeout, network
+            error), it is re-queued with an incremented attempt count and a calculated next-retry time.</li>
+          <li>On a terminal failure (any 4xx), the request is immediately marked <code>failed</code> — no further
+            retries, no waste.</li>
+          <li>If a request exhausts all allowed attempts, it moves to dead-letter storage for inspection.</li>
+        </ol>
+
+        <h3>Key Endpoints</h3>
+        <div class="endpoint-block">
+          POST /request — enqueue a new outgoing request<br>
+          GET /request/:id — check status of a specific request<br>
+          GET /requests — list all requests with their current state<br>
+          GET /dead-letter — inspect requests that exhausted all retries
+        </div>
+
+        <h3>One Technical Challenge — Backoff With Jitter</h3>
+        <div class="challenge-box">
+          <p>
+            <strong>The problem:</strong> Pure exponential backoff (1s → 2s → 4s → 8s → 16s) sounds clean,
+            but in a system where multiple failed requests retry at the same time, they all wake up
+            simultaneously and hammer the external service together — exactly when it's already struggling.
+            This is called a thundering herd.
+          </p>
+          <p>
+            <strong>How I solved it:</strong> Each retry delay is multiplied by a random jitter factor
+            in the range <code>[0.8, 1.2)</code>, re-rolled independently on every attempt. This spreads
+            retries across a window instead of bunching them, so the external service gets a more even
+            load curve during recovery. The jitter is re-rolled per attempt rather than once at
+            enqueue time so the spread stays effective across the full backoff sequence.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- REFLECTION -->
+  <section id="reflection">
+    <div class="container">
+      <p class="section-label">Learning Reflection</p>
+      <h2>What HNG actually taught me</h2>
+      <p>Honest version. No filler.</p>
+      <ul class="reflection-list">
+        <li>
+          I learned the difference between code that works and code that holds up. Before HNG, I was
+          happy if endpoints returned the right response. By Stage 4, I was thinking about query latency,
+          cache hit rates, and what happens when 500,000 rows hit the system at once.
+        </li>
+        <li>
+          Edge cases stopped being afterthoughts. Duplicate rows, partial upload failures, race conditions
+          on concurrent writes, expired tokens — I used to skip these. Now I design for them first.
+        </li>
+        <li>
+          Writing before building changed how I code. The RFC process in Stage 5 felt like overhead until
+          I realised it caught two bad decisions before I wrote a single line. I'll keep doing it.
+        </li>
+        <li>
+          I got more comfortable with systems thinking — not just what a component does, but how it
+          fails, what it does to the components around it when it does, and how to make failures visible
+          through logging and structured error responses.
+        </li>
+        <li>
+          I still have a lot to learn. Distributed systems, proper load testing, deeper Rust — these are
+          on the list. HNG showed me where the ceiling is. Now I know what to climb toward.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <p class="section-label">Contact</p>
+      <h2>Get in touch</h2>
+      <p>Open to backend roles, collaborations, and interesting problems. Reach out anywhere below.</p>
+      <div class="contact-grid">
+        <a href="mailto:covenantekojoe@gmail.com" class="contact-card">✉ covenantekojoe@gmail.com</a>
+        <a href="https://github.com/ekojoecovenant" target="_blank" rel="noopener" class="contact-card">⌥
+          github.com/ekojoecovenant</a>
+        <a href="https://linkedin.com/in/ekojoecovenant" target="_blank" rel="noopener" class="contact-card">in
+          linkedin.com/in/ekojoecovenant</a>
+        <a href="https://x.com/ekojoecovenant" target="_blank" rel="noopener" class="contact-card">𝕏
+          x.com/ekojoecovenant</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Ekojoe Covenant Lemom · Built with HTML & CSS · 2026</p>
+  </footer>
+
+</body>
+
+</html>
