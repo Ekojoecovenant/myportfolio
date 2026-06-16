@@ -911,7 +911,7 @@
       <div class="niche-card">
         Backend Systems + Security · TypeScript + Rust · 19 y/o · building toward Marine Tech
       </div>
-      <p>I'm a 19-year-old backend developer with about a year of hands-on experience. I started with Express, moved to
+      <p>I'm a 19-year-old backend developer with about 3 years of hands-on experience. I started with Express, moved to
         NestJS, and started learning Rust because I wanted to understand what's actually happening underneath. I'm not a
         "tutorial developer" — I build tools I actually want to exist.</p>
       <p>Outside of code I grind LeetCode for DSA, play football, and have a long-term goal of working at the
@@ -932,10 +932,13 @@
           <div class="tags">
             <span class="tag accent">Rust</span>
             <span class="tag accent">Security Tooling</span>
+            <span class="tag accent">AWS SES</span>
             <span class="tag">C / C++ (Arduino)</span>
             <span class="tag">Linux / VPS</span>
             <span class="tag">Nginx</span>
             <span class="tag">pm2</span>
+            <span class="tag">SMTP / STARTTLS</span>
+            <span class="tag">Tokio (async Rust)</span>
           </div>
         </div>
         <div class="skills-group">
@@ -1073,6 +1076,39 @@
           <div class="project-footer" style="margin-top:1rem">
             <div class="project-links">
               <a href="https://github.com/ekojoecovenant/nest-telegram-uptime-bot" target="_blank" rel="noopener"
+                class="project-link">github ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- rust-email-ses -->
+        <div class="project-card">
+          <div class="project-top">
+            <h3>rust-email-ses</h3>
+            <span class="project-badge">Original · Rust</span>
+          </div>
+          <p class="project-desc">A production-ready email sender written in Rust, using AWS SES over STARTTLS. Built
+            after researching how bulk email actually works at scale. Handles TLS configuration, credential management
+            via environment variables, async SMTP transport, and structured error handling with anyhow. Costs $0.10 per
+            1,000 emails.</p>
+          <div class="project-stack tags">
+            <span class="tag accent">Rust</span>
+            <span class="tag accent">AWS SES</span>
+            <span class="tag">lettre</span>
+            <span class="tag">Tokio</span>
+            <span class="tag">STARTTLS</span>
+            <span class="tag">async/await</span>
+            <span class="tag">Cloudflare DNS</span>
+          </div>
+          <div style="margin-top:1rem">
+            <p class="contrib-label">Why it exists</p>
+            <p class="contrib-text">I wanted to understand how services like Resend actually deliver email at scale. One
+              research session later I was setting up AWS SES, debugging DNS records, fixing TLS handshake errors, and
+              shipping a working Rust binary that sends real emails to real inboxes.</p>
+          </div>
+          <div class="project-footer" style="margin-top:1rem">
+            <div class="project-links">
+              <a href="https://github.com/Ekojoecovenant/rust-email" target="_blank" rel="noopener"
                 class="project-link">github ↗</a>
             </div>
           </div>
@@ -1286,7 +1322,7 @@
   <section id="reflection">
     <div class="wrap">
       <p class="label">Learning Reflection</p>
-      <h2>What a year actually taught me</h2>
+      <h2>What 3 years actually taught me</h2>
       <p>Honest version. No performance, no buzzwords.</p>
       <div class="reflection-items">
         <div class="reflection-item">
